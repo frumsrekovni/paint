@@ -1,27 +1,39 @@
-var body = document.getElementsByTagName("body");
-var canvas = document.getElementById("drawingArea");
-var context = canvas.getContext("2d");
-var leftMousebtnPressed = false;
-var posX = 0;
-var posY = 0;
-var brushSize = 10;
-body[0].addEventListener("mouseup", function () {
+const body = document.getElementsByTagName("body");
+const canvas = document.getElementById("drawingArea");
+const context = canvas.getContext("2d");
+let leftMousebtnPressed = false;
+let posX = 0;
+let posY = 0;
+let brushSize = 10;
+body[0].addEventListener("mouseup", () => {
     leftMousebtnPressed = false;
 });
-body[0].addEventListener("mousedown", function (mouseEvent) {
+body[0].addEventListener("mousedown", (mouseEvent) => {
     drawCircle(mouseEvent.offsetX, mouseEvent.offsetY);
     leftMousebtnPressed = true;
     posX = mouseEvent.offsetX;
     posY = mouseEvent.offsetY;
 });
-canvas.addEventListener("mousemove", function (mouseEvent) {
+canvas.addEventListener("mousemove", (mouseEvent) => {
     if (leftMousebtnPressed) {
-        var xx = mouseEvent.offsetX; // If you use just X here the point of the mouse is where the left corner of the circle is drawn instead of the center
-        var yy = mouseEvent.offsetY;
+        const xx = mouseEvent.offsetX; // If you use just X here the point of the mouse is where the left corner of the circle is drawn instead of the center
+        const yy = mouseEvent.offsetY;
         drawCircle(xx, yy);
         connectCircles(posX, posY, xx, yy);
         posX = xx;
         posY = yy;
+    }
+});
+canvas.addEventListener("wheel", (event) => {
+    const delta = Math.sign(event.deltaY);
+    if (delta == -1) {
+        brushSize++;
+    }
+    else if (delta == 1) {
+        brushSize--;
+        if (brushSize < 1) {
+            brushSize = 1;
+        }
     }
 });
 function drawCircle(x, y) {

@@ -30,6 +30,19 @@ canvas.addEventListener("mousemove", (mouseEvent) => {
     
 });
 
+canvas.addEventListener("wheel", (event) => {
+    const delta:number = Math.sign(event.deltaY);
+    if(delta == -1){
+        brushSize++;
+    }
+    else if(delta == 1){
+        brushSize--;
+        if(brushSize < 1){
+            brushSize = 1;
+        }
+    }
+});
+
 function drawCircle(x:number, y:number){
     context.beginPath();
     context.arc(x,y,brushSize,0,Math.PI*2);
