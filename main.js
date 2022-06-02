@@ -1,6 +1,7 @@
 const body = document.getElementsByTagName("body");
 const canvas = document.getElementById("drawingArea");
 const context = canvas.getContext("2d");
+const colorpicker = document.getElementById("colorpicker");
 let leftMousebtnPressed = false;
 let posX = 0;
 let posY = 0;
@@ -48,3 +49,7 @@ function connectCircles(x, y, xx, yy) {
     context.lineWidth = brushSize * 2;
     context.stroke();
 }
+colorpicker.addEventListener("change", (chosenColor) => {
+    context.fillStyle = chosenColor.target.value;
+    context.strokeStyle = chosenColor.target.value;
+});
