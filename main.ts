@@ -2,10 +2,19 @@ const body = document.getElementsByTagName("body") as HTMLCollectionOf<HTMLBodyE
 const canvas = document.getElementById("drawingArea") as HTMLCanvasElement;
 const context = canvas.getContext("2d");
 const colorpicker = document.getElementById("colorpicker") as HTMLInputElement;
+const clearbtn = document.getElementById("clear") as HTMLButtonElement;
+const canvasSizebtn = document.getElementById("changesize") as HTMLButtonElement;
 let leftMousebtnPressed:boolean = false;
 let posX:number = 0;
 let posY:number = 0;
 let brushSize:number = 10;
+
+changeDrawingArea(window.innerWidth/2, window.innerHeight/2);
+
+function changeDrawingArea(width:number, height:number){
+    canvas.width = width;
+    canvas.height = height;
+}
 
 body[0].addEventListener("mouseup", () => {
     leftMousebtnPressed = false;
@@ -60,4 +69,14 @@ function connectCircles(x:number,y:number,xx:number,yy:number){
 colorpicker.addEventListener("change", (chosenColor) => {
     context.fillStyle = (chosenColor.target as HTMLInputElement).value;
     context.strokeStyle = (chosenColor.target as HTMLInputElement).value;
+});
+
+clearbtn.addEventListener("click", () => {
+    context.clearRect(0,0,canvas.width,canvas.height);
+});
+
+canvasSizebtn.addEventListener("click", () => {
+    let width = parseInt((document.getElementById("canvaswidth") as HTMLInputElement).value);
+    let height = parseInt((document.getElementById("canvasheight") as HTMLInputElement).value);
+    changeDrawingArea(width,height);
 });

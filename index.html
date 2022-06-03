@@ -9,7 +9,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="drawingArea" width="500"height="500"></canvas>
-    <input type="color" id="colorpicker" />
+    <div id="paintprogram">
+        <canvas id="drawingArea" width="200"height="200"></canvas>
+        <div id="tools">
+            <input type="color" id="colorpicker" />
+            <button id="clear">CLEAR</button>
+            <label for="sizeinputs"><b>Drawing area in pixels</b></label>
+            <div id="sizeinputs">
+                <input type="number" id="canvaswidth" placeholder="Width">
+                <input type="number" id="canvasheight" placeholder="Height">
+                    
+                <button id="changesize">Change</button>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>

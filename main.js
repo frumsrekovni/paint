@@ -2,10 +2,17 @@ const body = document.getElementsByTagName("body");
 const canvas = document.getElementById("drawingArea");
 const context = canvas.getContext("2d");
 const colorpicker = document.getElementById("colorpicker");
+const clearbtn = document.getElementById("clear");
+const canvasSizebtn = document.getElementById("changesize");
 let leftMousebtnPressed = false;
 let posX = 0;
 let posY = 0;
 let brushSize = 10;
+changeDrawingArea(window.innerWidth / 2, window.innerHeight / 2);
+function changeDrawingArea(width, height) {
+    canvas.width = width;
+    canvas.height = height;
+}
 body[0].addEventListener("mouseup", () => {
     leftMousebtnPressed = false;
 });
@@ -52,4 +59,12 @@ function connectCircles(x, y, xx, yy) {
 colorpicker.addEventListener("change", (chosenColor) => {
     context.fillStyle = chosenColor.target.value;
     context.strokeStyle = chosenColor.target.value;
+});
+clearbtn.addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+});
+canvasSizebtn.addEventListener("click", () => {
+    let width = parseInt(document.getElementById("canvaswidth").value);
+    let height = parseInt(document.getElementById("canvasheight").value);
+    changeDrawingArea(width, height);
 });
