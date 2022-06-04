@@ -16,7 +16,7 @@ function changeDrawingArea(width, height) {
 body[0].addEventListener("mouseup", () => {
     leftMousebtnPressed = false;
 });
-body[0].addEventListener("mousedown", (mouseEvent) => {
+canvas.addEventListener("mousedown", (mouseEvent) => {
     drawCircle(mouseEvent.offsetX, mouseEvent.offsetY);
     leftMousebtnPressed = true;
     posX = mouseEvent.offsetX;
