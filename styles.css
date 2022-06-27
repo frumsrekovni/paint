@@ -11,7 +11,13 @@ body{
 #tools{
     display: flex;
     flex-direction: column;
+    width: 100px;
 }
+#tools *{
+    margin-bottom:0.2rem;
+    width: 4rem;
+}
+
 canvas {
     background: white;
     filter: drop-shadow(0.3rem 0.3rem 0.19rem rgba(0, 0, 0, 0.5));
